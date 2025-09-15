@@ -1,5 +1,8 @@
 # 🎬 Movie Recommendation System
 
+<img width="1910" height="934" alt="movei recommendation" src="https://github.com/user-attachments/assets/4118bffa-2ab9-4f7f-b676-e44e9fe04e4e" />
+
+
 A content-based movie recommender system built using Python, Streamlit, and TMDB API.  
 This application suggests similar movies based on selected movie metadata such as genre, cast, keywords, and director.
 
@@ -12,7 +15,6 @@ If you're running locally:
 👉 [http://localhost:8501](http://localhost:8501)
 
 **🌐 Live Demo (Coming soon)**  
-> You can deploy this app on [Streamlit Cloud](https://streamlit.io/cloud) to get a live shareable link.
 
 ---
 
@@ -35,16 +37,7 @@ This system uses:
 
 ---
 
-## 🧪 Sample Screenshot
 
-Here’s a preview of the app running on localhost:
-
-![Home Screen](<img width="1910" height="1042" alt="image" src="https://github.com/user-attachments/assets/1b55573c-e13b-42ed-9825-79a99a60ac48" />
-)
-
-> _This is the main screen showing the movie selector and "Show Recommendation" button._
-
----
 
 ## 🛠️ Tech Stack
 
@@ -59,13 +52,3 @@ Here’s a preview of the app running on localhost:
 | `requests`         | API calls (TMDB)            |
 
 ---
-
-## 🧰 Getting Started
-
-Follow the steps below to run this project locally:
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Abdulwahid84/movie-recommendation.git
-cd movie-recommendation
