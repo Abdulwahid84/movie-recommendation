@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>app.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+app.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pickle</span>
+<span class="s0">import </span><span class="s1">streamlit </span><span class="s0">as </span><span class="s1">st</span>
+<span class="s0">import </span><span class="s1">requests</span>
+
+
+<span class="s0">def </span><span class="s1">fetch_poster(movie_id):</span>
+    <span class="s1">url = </span><span class="s2">f&quot;https://api.themoviedb.org/3/movie/</span><span class="s0">{</span><span class="s1">movie_id</span><span class="s0">}</span><span class="s2">?api_key=8265bd1679663a7ea12ac168da84d2e8&amp;language=en-US&quot;</span>
+    <span class="s1">data = requests.get(url)</span>
+    <span class="s1">data = data.json()</span>
+    <span class="s1">poster_path = data.get(</span><span class="s2">'poster_path'</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">poster_path:</span>
+        <span class="s0">return </span><span class="s2">f&quot;https://image.tmdb.org/t/p/w500/</span><span class="s0">{</span><span class="s1">poster_path</span><span class="s0">}</span><span class="s2">&quot;</span>
+    <span class="s0">return </span><span class="s2">&quot;https://via.placeholder.com/500x750?text=No+Image&quot;</span>
+
+
+<span class="s0">def </span><span class="s1">recommend(movie):</span>
+    <span class="s1">index = movies[movies[</span><span class="s2">'title'</span><span class="s1">] == movie].index[</span><span class="s3">0</span><span class="s1">]</span>
+    <span class="s1">distances = sorted(</span>
+        <span class="s1">list(enumerate(similarity[index]))</span><span class="s0">, </span><span class="s1">reverse=</span><span class="s0">True, </span><span class="s1">key=</span><span class="s0">lambda </span><span class="s1">x: x[</span><span class="s3">1</span><span class="s1">]</span>
+    <span class="s1">)</span>
+    <span class="s1">recommended_titles = []</span>
+    <span class="s1">recommended_posters = []</span>
+    <span class="s0">for </span><span class="s1">i </span><span class="s0">in </span><span class="s1">distances[</span><span class="s3">1</span><span class="s1">:</span><span class="s3">6</span><span class="s1">]:</span>
+        <span class="s1">movie_id = movies.iloc[i[</span><span class="s3">0</span><span class="s1">]].movie_id</span>
+        <span class="s1">recommended_posters.append(fetch_poster(movie_id))</span>
+        <span class="s1">recommended_titles.append(movies.iloc[i[</span><span class="s3">0</span><span class="s1">]].title)</span>
+    <span class="s0">return </span><span class="s1">recommended_titles</span><span class="s0">, </span><span class="s1">recommended_posters</span>
+
+
+<span class="s4"># Load models</span>
+<span class="s1">st.header(</span><span class="s2">'🎬 Movie Recommender System'</span><span class="s1">)</span>
+<span class="s1">movies = pickle.load(open(</span><span class="s2">'movie_list.pkl'</span><span class="s0">, </span><span class="s2">'rb'</span><span class="s1">))</span>
+<span class="s1">similarity = pickle.load(open(</span><span class="s2">'similarity.pkl'</span><span class="s0">, </span><span class="s2">'rb'</span><span class="s1">))</span>
+
+
+<span class="s4"># UI dropdown</span>
+<span class="s1">movie_list = movies[</span><span class="s2">'title'</span><span class="s1">].values</span>
+<span class="s1">selected_movie = st.selectbox(</span>
+    <span class="s2">&quot;Type or select a movie from the dropdown&quot;</span><span class="s0">,</span>
+    <span class="s1">movie_list</span>
+<span class="s1">)</span>
+
+<span class="s4"># Recommendations</span>
+<span class="s0">if </span><span class="s1">st.button(</span><span class="s2">'Show Recommendation'</span><span class="s1">):</span>
+    <span class="s1">titles_to_display</span><span class="s0">, </span><span class="s1">posters_to_display = recommend(selected_movie)</span>
+
+    <span class="s1">cols = st.columns(</span><span class="s3">5</span><span class="s1">)</span>
+    <span class="s0">for </span><span class="s1">idx</span><span class="s0">, </span><span class="s1">col </span><span class="s0">in </span><span class="s1">enumerate(cols):</span>
+        <span class="s0">with </span><span class="s1">col:</span>
+            <span class="s1">st.text(titles_to_display[idx])</span>
+            <span class="s1">st.image(posters_to_display[idx])</span>
+</pre>
+</body>
+</html>
