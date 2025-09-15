@@ -39,7 +39,8 @@ This system uses:
 
 Here’s a preview of the app running on localhost:
 
-![Home Screen](screenshot.png)
+![Home Screen](<img width="1910" height="1042" alt="image" src="https://github.com/user-attachments/assets/1b55573c-e13b-42ed-9825-79a99a60ac48" />
+)
 
 > _This is the main screen showing the movie selector and "Show Recommendation" button._
 
