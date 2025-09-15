@@ -1,4 +1,3 @@
-# movie-recommendation
 # 🎬 Movie Recommendation System
 
 A content-based movie recommender system built using Python, Streamlit, and TMDB API.  
@@ -36,6 +35,16 @@ This system uses:
 
 ---
 
+## 🧪 Sample Screenshot
+
+Here’s a preview of the app running on localhost:
+
+![Home Screen](screenshot.png)
+
+> _This is the main screen showing the movie selector and "Show Recommendation" button._
+
+---
+
 ## 🛠️ Tech Stack
 
 | Tool / Library     | Purpose                     |
@@ -50,9 +59,12 @@ This system uses:
 
 ---
 
-## 🧪 Sample Screenshot
+## 🧰 Getting Started
 
-> You can include a screenshot of the app UI here (optional).
+Follow the steps below to run this project locally:
 
-```markdown
-![App Screenshot](screenshot.png)
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Abdulwahid84/movie-recommendation.git
+cd movie-recommendation
