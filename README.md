@@ -1,5 +1,3 @@
-Absolutely! I’ve taken your reference and polished it into a complete, GitHub-ready Markdown README file with all sections in a single file, ready to use:
-
 
 # 🎬 Movie Recommendation System
 
